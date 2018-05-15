@@ -20,6 +20,6 @@
     "typescript": "^2.8.1"
   },
   "dependencies": {
-    "@nodeart/event_emitter": "^1.2.1"
+    "@nodeart/event_emitter": "^1.2.2"
   }
 }
