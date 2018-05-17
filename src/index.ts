@@ -15,6 +15,12 @@ export class State<S extends Object> extends EventEmitter {
     cbs.forEach(it => it.call(this));
     this.emit('change', this);
   }
+  constructor(initialState?: S) {
+    super();
+    if (initialState !== undefined) {
+      this.state = initialState;
+    }
+  }
   setState(
     partialState: ((this: this, prevState: Readonly<S>) => (Partial<S> | null)) | (Partial<S> | null),
     callback?: (this: this) => void
