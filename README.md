@@ -1,4 +1,4 @@
-# create-react-context
+# state
 An EventEmitter which is stateful and has `setState` method which can debounce `change` event. Like Flux.
 
 ## Install
@@ -6,7 +6,7 @@ An EventEmitter which is stateful and has `setState` method which can debounce `
 
 ## Example
 
-```jsx
+```tsx
 import { State } from '@xialvjun/state';
 
 class AuthState extends State<{ logined: boolean }> {
@@ -34,4 +34,14 @@ auth.other_property = auth.other_property + 1;
 auth.emit('other_event');
 
 unsubscribe();
+
+
+interface Counter<T> extends State<T> {
+  inc?(): void;
+  dec?(): void;
+}
+const counter_state = new State({ count: 0 });
+const counter = counter_state as Counter<typeof counter_state.state>
+counter.inc = () => counter.setState({ count: counter.state.count + 1 });
+counter.dec = () => counter.setState({ count: counter.state.count - 1 });
 ```
